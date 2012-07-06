@@ -1,4 +1,10 @@
 UserApp::Application.routes.draw do
+  
+  resources :posts
+  resources :users
+  match '/', :to => "users#index"
+  match '/posts/new/:user_id' => "posts#new", :as => :new_user_post
+  match '/user/:id' => "users#show", :as => :show_user
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +54,7 @@ UserApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'users#index'
 
   # See how all your routes lay out with "rake routes"
 
